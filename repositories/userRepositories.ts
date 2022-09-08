@@ -15,3 +15,12 @@ export async function getUserbyEmail(email: string) {
 export async function createUser(data: CreateUserData) {
   await client.users.create({ data });
 }
+
+export async function getUserbyId(id: number) {
+  const user = await client.users.findFirst({
+    where: {
+      id: id,
+    },
+  });
+  return user;
+}
