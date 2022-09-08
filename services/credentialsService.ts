@@ -15,10 +15,10 @@ export async function createCredential(
   token: string
 ) {
   const id = await utilsService.verifyTokenReturnId(token);
-  const userId = Number(id.id);
-  if (!userId) {
+  if (!id) {
     throw { type: "unauthorized", message: "Token inválido" };
   }
+  const userId = Number(id.id);
   const passwordEncrypted = cryptr.encrypt(password);
   const data = {
     title,
