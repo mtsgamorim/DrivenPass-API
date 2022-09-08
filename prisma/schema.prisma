@@ -13,6 +13,7 @@ model users {
   password    String
   credentials credentials[]
   notes       notes[]
+  cards       cards[]
 }
 
 model credentials {
@@ -33,6 +34,22 @@ model notes {
   userId   Int
   title    String
   note     String
+
+  @@unique([userId, title])
+}
+
+model cards {
+  id              Int   @id @default(autoincrement())
+  user            users  @relation(fields: [userId], references: [id])
+  userId          Int
+  title           String
+  number          String 
+  name            String
+  cvc             String
+  expirationDate  String
+  password        String  
+  isVirtual       Boolean
+  type            String
 
   @@unique([userId, title])
 }
