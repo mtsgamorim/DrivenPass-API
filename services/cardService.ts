@@ -23,13 +23,14 @@ export async function createCard(
   if (!id) {
     throw { type: "unauthorized", message: "Token inválido" };
   }
+  const nameUpperCase = name.toUpperCase();
   const userId = Number(id.id);
   const passwordEncrypted = cryptr.encrypt(password);
   const cvcEncrypted = cryptr.encrypt(cvc);
   const data = {
     title,
     number,
-    name,
+    name: nameUpperCase,
     cvc: cvcEncrypted,
     expirationDate,
     password: passwordEncrypted,
