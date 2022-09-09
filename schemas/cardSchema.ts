@@ -5,9 +5,7 @@ const cardSchema = Joi.object({
   number: Joi.string()
     .pattern(/^[0-9]{16}$/)
     .required(),
-  name: Joi.string()
-    .pattern(/^[A-Z]*$/)
-    .required(),
+  name: Joi.string().uppercase().required(),
   cvc: Joi.string()
     .pattern(/^[0-9]{3}$/)
     .required(),
